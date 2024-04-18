@@ -31,7 +31,15 @@ class StudentResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('student_id')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('address')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('address2')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //
