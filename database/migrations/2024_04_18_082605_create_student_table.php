@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('customar', function (Blueprint $table) {
-            $table->string('country', 60)->nullable()->after('address');
-            $table->string('state', 50)->nullable()->after('state');
+        Schema::create('student', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -22,8 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('customar', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('student');
     }
 };

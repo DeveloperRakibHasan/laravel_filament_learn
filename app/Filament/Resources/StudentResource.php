@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SpeakerResource\Pages;
-use App\Filament\Resources\SpeakerResource\RelationManagers;
-use App\Models\Speaker;
+use App\Filament\Resources\StudentResource\Pages;
+use App\Filament\Resources\StudentResource\RelationManagers;
+use App\Models\Student;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,11 +13,11 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class SpeakerResource extends Resource
+class StudentResource extends Resource
 {
-    protected static ?string $model = Speaker::class;
+    protected static ?string $model = Student::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-microphone';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
@@ -56,9 +56,9 @@ class SpeakerResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSpeakers::route('/'),
-            'create' => Pages\CreateSpeaker::route('/create'),
-            'edit' => Pages\EditSpeaker::route('/{record}/edit'),
+            'index' => Pages\ListStudents::route('/'),
+            'create' => Pages\CreateStudent::route('/create'),
+            'edit' => Pages\EditStudent::route('/{record}/edit'),
         ];
     }
 }
