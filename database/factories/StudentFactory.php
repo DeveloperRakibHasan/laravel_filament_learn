@@ -18,9 +18,9 @@ class StudentFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'student_id' => $this->faker->unique()->randomNumber(6),
-            'address' => $this->faker->country(),
-            'address2' => $this->faker->streetAddress(),
+            'phone_number' => $this->faker->phoneNumber(),
+            'country' => $this->faker->country(),
+            'city' => $this->faker->streetAddress(),
         ];
     }
 }

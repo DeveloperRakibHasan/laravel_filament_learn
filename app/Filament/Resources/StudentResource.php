@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Components\RandomIDTextInput;
 
 class StudentResource extends Resource
 {
@@ -23,7 +24,17 @@ class StudentResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('phone_number')
+                    ->required(),
+                Forms\Components\TextInput::make('country')
+                    ->required()
+                    ->maxLength(100),
+                Forms\Components\TextInput::make('city')
+                    ->maxLength(80),
+
             ]);
     }
 
@@ -33,11 +44,11 @@ class StudentResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('student_id')
+                Tables\Columns\TextColumn::make('phone_number')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('address')
+                Tables\Columns\TextColumn::make('country')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('address2')
+                Tables\Columns\TextColumn::make('city')
                     ->searchable()
                     ->sortable(),
             ])
@@ -65,8 +76,8 @@ class StudentResource extends Resource
     {
         return [
             'index' => Pages\ListStudents::route('/'),
-            'create' => Pages\CreateStudent::route('/create'),
-            'edit' => Pages\EditStudent::route('/{record}/edit'),
+//            'create' => Pages\CreateStudent::route('/create'),
+//            'edit' => Pages\EditStudent::route('/{record}/edit'),
         ];
     }
 }
