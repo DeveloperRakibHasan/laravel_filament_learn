@@ -27,6 +27,8 @@ class StudentResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\FileUpload::make('avatar')
+                    ->required(),
                 Forms\Components\TextInput::make('phone_number')
                     ->required(),
                 Forms\Components\TextInput::make('country')
@@ -44,6 +46,8 @@ class StudentResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+                Tables\Columns\ImageColumn::make('avatar')
+                    ->circular(),
                 Tables\Columns\TextColumn::make('phone_number')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('country')
@@ -64,6 +68,7 @@ class StudentResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
