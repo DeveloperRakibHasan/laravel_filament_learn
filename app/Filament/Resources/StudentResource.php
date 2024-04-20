@@ -53,7 +53,14 @@ class StudentResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('Start')->query(fn(Builder $query): Builder => $query->where('country', 1)),
+                Tables\Filters\SelectFilter::make('country')
+                ->options([
+                    'Bangladesh' => 'BD',
+                    'USA' => 'USA',
+                    'Pakisthan' => 'PK',
+                    'Arab' => 'AA',
+                ])
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
