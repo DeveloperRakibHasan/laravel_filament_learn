@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Models\User;
+
 return new class extends Migration
 {
     /**
@@ -11,10 +13,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clinics', function (Blueprint $table) {
+        Schema::create('slots', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
+            $table->date('date');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->string('status');
+            $table->foreignIdFor(User::class, 'owner_id');
             $table->timestamps();
         });
     }
@@ -24,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clinics');
+        Schema::dropIfExists('slots');
     }
 };

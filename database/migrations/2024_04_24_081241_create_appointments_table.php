@@ -11,10 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clinics', function (Blueprint $table) {
+        Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+//            $table->date('date');
+//            $table->time('start_time');
+//            $table->time('end_time');
             $table->string('description');
+            $table->foreignId('pet_id')
+                ->constrained('pets')
+                ->cascadeOnDelete();
+            $table->foreignId('slot_id')
+                ->constrained('slots');
             $table->timestamps();
         });
     }
@@ -24,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clinics');
+        Schema::dropIfExists('appointments');
     }
 };
