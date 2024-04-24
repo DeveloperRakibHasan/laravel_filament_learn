@@ -13,6 +13,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Components\RandomIDTextInput;
+use Illuminate\Support\Facades\Storage;
 
 class StudentResource extends Resource
 {
@@ -69,6 +70,9 @@ class StudentResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
+                ->before(function ($record) {
+                    Storage::delete('public/' . $record->avatar);
+                })
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
